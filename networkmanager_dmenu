@@ -72,7 +72,7 @@ def dmenu_cmd(num_lines, prompt="Networks", active_lines=None):  # pylint: disab
                 ["dmenu", "-l", "<num_lines>", "-p", "<prompt>", "-i"]
 
     """
-    commands = {"dmenu": ["-p", str(prompt)],
+    commands = {"dmenu": ["-p", str(prompt), "-l", str(num_lines)],
                 "rofi": ["-dmenu", "-p", str(prompt), "-l", str(num_lines)],
                 "bemenu": ["-p", str(prompt)]}
     command = shlex.split(CONF.get('dmenu', 'dmenu_command', fallback="dmenu"))
