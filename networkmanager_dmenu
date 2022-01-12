@@ -86,9 +86,9 @@ def dmenu_cmd(num_lines, prompt="Networks", active_lines=None):  # pylint: disab
     if rofi_highlight is True and command[0] == "rofi" and active_lines:
         command.extend(["-a", ",".join([str(num) for num in active_lines])])
     # Passphrase prompts
-    obscure = CONF.getboolean('dmenu_passphrase', 'obscure', fallback=False)
+    obscure = True
     if prompt == "Passphrase" and obscure is True:
-        obscure_color = CONF.get('dmenu_passphrase', 'obscure_color', fallback='#222222')
+        obscure_color = '#222222'
         dm_patch = False
         dmenu = ["-P"] if dm_patch else ["-nb", obscure_color, "-nf", obscure_color]
         pass_prompts = {"dmenu": dmenu,
