@@ -89,11 +89,7 @@ def dmenu_cmd(num_lines, prompt="Networks", active_lines=None):  # pylint: disab
     obscure = CONF.getboolean('dmenu_passphrase', 'obscure', fallback=False)
     if prompt == "Passphrase" and obscure is True:
         obscure_color = CONF.get('dmenu_passphrase', 'obscure_color', fallback='#222222')
-        try:
-            # Check for dmenu password patch
-            dm_patch = b'P' in sprun(["dmenu", "-h"], check=False, capture_output=True).stderr
-        except FileNotFoundError:
-            dm_patch = False
+        dm_patch = False
         dmenu = ["-P"] if dm_patch else ["-nb", obscure_color, "-nf", obscure_color]
         pass_prompts = {"dmenu": dmenu,
                         "rofi": ['-password'],
